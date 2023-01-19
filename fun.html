@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Trucker App</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-animate/1.8.3/angular-animate.min.js" integrity="sha512-Vhup4/4s+jnmiFsp1Sg1/6jXncRbIBc+fKemYjq1n+nEXthmeASyaWnClWsAV5Sas7WbLMLNYYHw6TxwQE4oPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="fun.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Codystar&family=Cute+Font&family=Ewert&family=Silkscreen&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+</head>
+<body>
+
+
+    <section class="navbar">
+        <nav>
+            <a href="">Home</a>
+            <a href="">Stops</a>
+            <a href="">Services</a>
+            <a href="">About</a>
+            <a href="">Contact</a>
+        </nav>
+    </section>
+
+    <section ng-app="myApp" ng-controller="myCtrl" class="module">
+
+        <div class="container">
+            <div class="login_container" ng-class="{false:'login_show'}[login_show]">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUM0B3JEYEnwgWjLLWU5x-ubd8mSFwPqtcyQ&usqp=CAU" alt="">
+                <div class="login_credentials">
+                    <label for="email">Username: <input type="email" ng-model="username"></label>
+                <br>
+                <label for="password">Password: <input type="text" ng-model="password"></label>
+                </div>
+                <div class="login_buttons">
+                    <button id="login" ng-click="login_show=false">Login</button>
+                    <button id="create_account">Create Account</button></div>
+                <a href="#">Forgot Password?</a>
+
+            </div>
+            <div class="welcome_container">
+                <div id="clock" ng-model="clock">{{time}}((clock}}{{date}}</div>
+                <span id="welcome_trucker">Welcome</span>
+                <img src="https://images.vexels.com/media/users/3/250426/isolated/lists/dc717df682a1b32da79c5aebd855f19b-star-american-color-stroke-badge.png" alt="" id="star">
+                <span id="welcome_trucker">Truckers!</span>
+            </div> 
+            <h4 class="constText" id="welcome_text">***FLOOD ADVISORY WARNING IN PANOLA COUNTY*** | Accident reported on I-40 at Exit 10A | Bergen St. will be closed for construction from 08/24/22 - 03/15/23 | </h4>
+
+            <!-- <img src="https://www.smart-trucking.com/wp-content/uploads/2019/10/The-Complete-Semi-Trucks-Guide-%E2%80%93-The-Only-One-Youll-Ever-Need.jpeg" alt="truck" id="myTruckStop_img"> -->
+
+            
+            <div class="app_container">
+
+                <div class="scheduleContainer">
+                        
+                    
+                    <span>Select Your Local Infinity Town Truck Stop!</span>
+                </div>
+                <div class="loves">
+                    <button class="logo_bttn" ng-click="show_pod=false"><img src="https://logo.clearbit.com/loves.com" alt="" class="logo" id="logo_loves">
+                    </button>
+
+                    <!-- <input type='checkbox' ng-model="clicked">Food</input>
+                    <input type='checkbox'>Fuel</input>
+                    <input type='checkbox'>Pumps</input>
+                    
+                    <div id="lovesInfo" class="infoline" ng-repeat="x in info[0].food">
+                        <p ng-show="clicked">{{ x.name + ': ' + x.hours }}</p>
+                    </div> -->
+                </div>
+
+                <div class="ta">
+                    <button class="logo_bttn" ng-click="show_pod=false">
+                        <img src="https://logo.clearbit.com/ta-petro.com" alt="" class="logo" id="logo_ta" >
+                    </button>
+                    
+                   
+                    <!-- <input type='checkbox' ng-model="clicked2">Food</input>
+                    <input type='checkbox'>Fuel</input>
+                    <input type='checkbox'>Pumps</input>
+                    <div id="taInfo" class="infoline" ng-repeat="x in info[1].food" ng-show="clicked2">
+                        <p>{{x.name + ': ' + x.hours}}</p>
+                    </div> -->
+
+                </div>
+
+                <div class="petro">
+                    <button class="logo_bttn" ng-click="show_pod=false">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOMDUPFGPIJoU1zX2VOslxEma2tW0sV6pkGz7pUGMoSvHBiAEICivg51RrjvhvcNuEK2g&usqp=CAU" alt="" class="logo" id="logo_petro">
+                </button>
+                    <!-- <input type='checkbox' ng-model="clicked3">Food</input>
+                    <input type='checkbox'>Fuel</input>
+                    <input type='checkbox'>Pumps</input>
+                    <div id="petroInfo" class="infoline" ng-repeat="x in info[2].food" ng-show="clicked3">
+                        <p>{{x.name + ': ' + x.hours}}</p>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="container_loves" ng-class="{false:'show_pod'}[show_pod]">
+            
+                <div class="app-options">
+                    <button ng-click="show_pod=true"><i class="fa-solid fa-arrow-left back"></i>
+                    </button>
+                    <button id="food-app"  class="app"><img src="https://freeiconshop.com/wp-content/uploads/edd/food-solid.png" alt="">
+                    <div class="overlay">
+                        <div class="app-title">FOOD</div>
+                    </div></button>
+                    <button id="fuel-app" class="app" ng-click="pumps_show=false"><img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/fuel-2694268-2236265.png" alt=""><div class="overlay">
+                        <div class="app-title">FUEL</div>
+                    </div>
+                    </button>
+                    <button id="showers-app" class="app" ng-click="showers_show=false"><img src="https://cdn-icons-png.flaticon.com/512/2425/2425854.png" alt=""><div class="overlay">
+                        <div class="app-title">SHOWERS</div>
+                    </div></button>
+                    <button ng-click="parking_show=false" id="parking-app" class="app"><img src="https://i0.wp.com/www.parkeagle.com/wp-content/uploads/2018/10/delivery-truck.png?resize=256%2C256&ssl=1" alt=""><div class="overlay">
+                        <div class="app-title">PARKING</div>
+                    </div></button>
+                    <button id="hotel-app" class="app" ng-click="map_show=false"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX///8AAAARERGcnJz8/Px9fX309PS5ubkxMTHr6+seHh6urq4UFBQLCwtDQ0OhoaGUlJRqamq/v7+MjIxUVFQ2NjbY2NjLy8vc3Nzx8fHS0tLGxsYoKChvb29NTU09PT1dXV2oqKjj4+MlJSWCgoJsbGxhYWGPj49HR0d4eHisp8BnAAAEpklEQVR4nO3d6XqiMACFYSiRRVyBsoioqHW5/xsc7LSKBpM4oiSZ8/4t9clXNBBgHMMAAAAAAAAAAAAAAAAAAAAAAAAAkA3Jgn0vzD2764G8imf1zW/btOuhvARJIvPXPCBdD+cFZiPzYuN0PZz2eZFZN5p1PaDW+ea1rW7TDXFvCgdB10NqmW3esjSbbPQvXGtfmGpfONO+MNe+0BEu9PzjdLUqwvy9A3yaYKFn1Y6bu0Sl3Xx7StNYeF58qNhYChQmEbVR38q6GO2/ENiHzu2J3betKon8QmfeFGiaPUVO0bnv0mREbfFj0tGQHzTmFHpf9wLNuRqrZYtdSOi/wMVqTb0ckW+O5RSmC0bh7RuarP0oOu7LfJauPS+z5chlFxJ6IqqLrq7NZf7y/JPB52K6tfwgT+Kq1u4ylV2Y3f8UfvNrr5RNBg1bDNxRdaZnlb4TJPE662C3sgvTfsOga2oHRWINmZt+bD4Xu+M2nIz9IEnfuFvZhQE70Iwuc03C+WOcDfvucrGaFr2wehfPXp8asgrJhDPa+eWDuBMMrPnoz93lIdodw7HzulR24ZEzxv650Hs88LZ3voy+wjJPq1n4fYW8HXMpjJ8urL/sMiom/mkazp4/5rALp5yhuOfCpM3Cq9SwdPLkdITN/u19zC7scUZwOM809NWQVp0m4l41DZ+OOQ9OxOxC1jnbycr73ZQ367al7x5WxXZviR9zmIXcPdM7Hw/pqyGvVR1zRtGuOG6rHZukrDMJduH6ztrwV3neln1690LDwcYdLf4ecuKmncoutOkf120So/PCi+HHoD8/zcJOagsXGnnTueZZcf4YNqwzO1XMiGChxzrm15fAkhWa5nEtVmgky4bf/lG/GCVdoTn6eSaBV0jKu2fUV6tD+QpN1ycihfcnG/fqjr+EhabrEJFCI2s+sRkmhuyF5jIWKjTItuGX5zfPbPDWWd0oMqHChqveg6N3s8n+PUN+VCJYaHj7xSWyv/yiH52StHBKBAurxmBy3K2i1bTYlnHDFpIWmrZwYcX21qdVWvMPZS30HilkkrVwpn1hYNBHAr0KfYM+nOtVWGpfONG+MGytUM6zNtFCknlpPEvyk6BZzrlJ1ZmtQOF6XJ3MLBaj0fKz4t4hel/m3Xr8Qv/w0cHAWsMvdDYdDKtF3MLZ3WdNFMEr5FwvVQCvcH3oYFCt4hXy7uPLj1cYKz2PnqBQ/3epRz87qxheIfcmsPS4R/xY9Z3ILSQB496TCvjnpSRnPn8pPYG1hZH2Ikq1lhJwd6l1ve56zOAhYitgYssk8x5it3YVQ14oVB8K1YdC9aFQfShUH1047npILaMLd5ZOSEPh8EMjZtPaQi8oVB8K1YdC9aFQfShUHwrVh0L1NRU+uT4ctuolhYXzFP8h5ZjJmrCF1wqxQoWv08T0Ptfs/iH9NZcoVA0KNSikvz1At0L6QUMUKgaFKJTfjP46Hc0KYxSiUHr/weeQ/tZq3Qo/UYhC2aEQhfJDIQrlh0L1C1P6+xFQqJj/tJD+jlmVC+l/0msb/m56Q+H/TtYLb2N26sYAAAAAAAAAAAAAAAAAAAAAAACAlv4A1GyQmLCVhwAAAAAASUVORK5CYII=" alt=""><div class="overlay">
+                        <div class="app-title">REST</div>
+                    </div></button>
+                </div>
+            </div>  
+            <!-- <div class="container_ta" ng-class="{false:'show_pod'}[show_pod]">
+                
+                <div class="app-options">
+                    <i class="fa-solid fa-arrow-left back"></i>
+                    
+                    <button id="food-app"  class="app"><img src="https://freeiconshop.com/wp-content/uploads/edd/food-solid.png" alt=""></button>
+                    <button id="fuel-app" class="app"><img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/fuel-2694268-2236265.png" alt="">
+                    </button>
+                    <button id="showers-app" class="app"><img src="https://cdn-icons-png.flaticon.com/512/2425/2425854.png" alt=""></button>
+                    <button id="parking-app" class="app"><img src="https://i0.wp.com/www.parkeagle.com/wp-content/uploads/2018/10/delivery-truck.png?resize=256%2C256&ssl=1" alt=""></button>
+                    <button id="hotel-app" class="app"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX///8AAAARERGcnJz8/Px9fX309PS5ubkxMTHr6+seHh6urq4UFBQLCwtDQ0OhoaGUlJRqamq/v7+MjIxUVFQ2NjbY2NjLy8vc3Nzx8fHS0tLGxsYoKChvb29NTU09PT1dXV2oqKjj4+MlJSWCgoJsbGxhYWGPj49HR0d4eHisp8BnAAAEpklEQVR4nO3d6XqiMACFYSiRRVyBsoioqHW5/xsc7LSKBpM4oiSZ8/4t9clXNBBgHMMAAAAAAAAAAAAAAAAAAAAAAAAAkA3Jgn0vzD2764G8imf1zW/btOuhvARJIvPXPCBdD+cFZiPzYuN0PZz2eZFZN5p1PaDW+ea1rW7TDXFvCgdB10NqmW3esjSbbPQvXGtfmGpfONO+MNe+0BEu9PzjdLUqwvy9A3yaYKFn1Y6bu0Sl3Xx7StNYeF58qNhYChQmEbVR38q6GO2/ENiHzu2J3betKon8QmfeFGiaPUVO0bnv0mREbfFj0tGQHzTmFHpf9wLNuRqrZYtdSOi/wMVqTb0ckW+O5RSmC0bh7RuarP0oOu7LfJauPS+z5chlFxJ6IqqLrq7NZf7y/JPB52K6tfwgT+Kq1u4ylV2Y3f8UfvNrr5RNBg1bDNxRdaZnlb4TJPE662C3sgvTfsOga2oHRWINmZt+bD4Xu+M2nIz9IEnfuFvZhQE70Iwuc03C+WOcDfvucrGaFr2wehfPXp8asgrJhDPa+eWDuBMMrPnoz93lIdodw7HzulR24ZEzxv650Hs88LZ3voy+wjJPq1n4fYW8HXMpjJ8urL/sMiom/mkazp4/5rALp5yhuOfCpM3Cq9SwdPLkdITN/u19zC7scUZwOM809NWQVp0m4l41DZ+OOQ9OxOxC1jnbycr73ZQ367al7x5WxXZviR9zmIXcPdM7Hw/pqyGvVR1zRtGuOG6rHZukrDMJduH6ztrwV3neln1690LDwcYdLf4ecuKmncoutOkf120So/PCi+HHoD8/zcJOagsXGnnTueZZcf4YNqwzO1XMiGChxzrm15fAkhWa5nEtVmgky4bf/lG/GCVdoTn6eSaBV0jKu2fUV6tD+QpN1ycihfcnG/fqjr+EhabrEJFCI2s+sRkmhuyF5jIWKjTItuGX5zfPbPDWWd0oMqHChqveg6N3s8n+PUN+VCJYaHj7xSWyv/yiH52StHBKBAurxmBy3K2i1bTYlnHDFpIWmrZwYcX21qdVWvMPZS30HilkkrVwpn1hYNBHAr0KfYM+nOtVWGpfONG+MGytUM6zNtFCknlpPEvyk6BZzrlJ1ZmtQOF6XJ3MLBaj0fKz4t4hel/m3Xr8Qv/w0cHAWsMvdDYdDKtF3MLZ3WdNFMEr5FwvVQCvcH3oYFCt4hXy7uPLj1cYKz2PnqBQ/3epRz87qxheIfcmsPS4R/xY9Z3ILSQB496TCvjnpSRnPn8pPYG1hZH2Ikq1lhJwd6l1ve56zOAhYitgYssk8x5it3YVQ14oVB8K1YdC9aFQfShUH1047npILaMLd5ZOSEPh8EMjZtPaQi8oVB8K1YdC9aFQfShUHwrVh0L1NRU+uT4ctuolhYXzFP8h5ZjJmrCF1wqxQoWv08T0Ptfs/iH9NZcoVA0KNSikvz1At0L6QUMUKgaFKJTfjP46Hc0KYxSiUHr/weeQ/tZq3Qo/UYhC2aEQhfJDIQrlh0L1C1P6+xFQqJj/tJD+jlmVC+l/0msb/m56Q+H/TtYLb2N26sYAAAAAAAAAAAAAAAAAAAAAAACAlv4A1GyQmLCVhwAAAAAASUVORK5CYII=" alt=""></button>
+                </div>
+            </div>  
+            <div class="container_petro" ng-class="{false:'show_pod'}[show_pod]">
+                <div class="app-options">
+                    <i class="fa-solid fa-arrow-left back"></i>
+                    <button id="food-app"  class="app"><img src="https://freeiconshop.com/wp-content/uploads/edd/food-solid.png" alt=""></button>
+                    <button id="fuel-app" class="app"><img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/fuel-2694268-2236265.png" alt="">
+                    </button>
+                    <button id="showers-app" class="app"><img src="https://cdn-icons-png.flaticon.com/512/2425/2425854.png" alt=""></button>
+                    <button id="parking-app" class="app"><img src="https://i0.wp.com/www.parkeagle.com/wp-content/uploads/2018/10/delivery-truck.png?resize=256%2C256&ssl=1" alt=""></button>
+                    <button id="hotel-app" class="app"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX///8AAAARERGcnJz8/Px9fX309PS5ubkxMTHr6+seHh6urq4UFBQLCwtDQ0OhoaGUlJRqamq/v7+MjIxUVFQ2NjbY2NjLy8vc3Nzx8fHS0tLGxsYoKChvb29NTU09PT1dXV2oqKjj4+MlJSWCgoJsbGxhYWGPj49HR0d4eHisp8BnAAAEpklEQVR4nO3d6XqiMACFYSiRRVyBsoioqHW5/xsc7LSKBpM4oiSZ8/4t9clXNBBgHMMAAAAAAAAAAAAAAAAAAAAAAAAAkA3Jgn0vzD2764G8imf1zW/btOuhvARJIvPXPCBdD+cFZiPzYuN0PZz2eZFZN5p1PaDW+ea1rW7TDXFvCgdB10NqmW3esjSbbPQvXGtfmGpfONO+MNe+0BEu9PzjdLUqwvy9A3yaYKFn1Y6bu0Sl3Xx7StNYeF58qNhYChQmEbVR38q6GO2/ENiHzu2J3betKon8QmfeFGiaPUVO0bnv0mREbfFj0tGQHzTmFHpf9wLNuRqrZYtdSOi/wMVqTb0ckW+O5RSmC0bh7RuarP0oOu7LfJauPS+z5chlFxJ6IqqLrq7NZf7y/JPB52K6tfwgT+Kq1u4ylV2Y3f8UfvNrr5RNBg1bDNxRdaZnlb4TJPE662C3sgvTfsOga2oHRWINmZt+bD4Xu+M2nIz9IEnfuFvZhQE70Iwuc03C+WOcDfvucrGaFr2wehfPXp8asgrJhDPa+eWDuBMMrPnoz93lIdodw7HzulR24ZEzxv650Hs88LZ3voy+wjJPq1n4fYW8HXMpjJ8urL/sMiom/mkazp4/5rALp5yhuOfCpM3Cq9SwdPLkdITN/u19zC7scUZwOM809NWQVp0m4l41DZ+OOQ9OxOxC1jnbycr73ZQ367al7x5WxXZviR9zmIXcPdM7Hw/pqyGvVR1zRtGuOG6rHZukrDMJduH6ztrwV3neln1690LDwcYdLf4ecuKmncoutOkf120So/PCi+HHoD8/zcJOagsXGnnTueZZcf4YNqwzO1XMiGChxzrm15fAkhWa5nEtVmgky4bf/lG/GCVdoTn6eSaBV0jKu2fUV6tD+QpN1ycihfcnG/fqjr+EhabrEJFCI2s+sRkmhuyF5jIWKjTItuGX5zfPbPDWWd0oMqHChqveg6N3s8n+PUN+VCJYaHj7xSWyv/yiH52StHBKBAurxmBy3K2i1bTYlnHDFpIWmrZwYcX21qdVWvMPZS30HilkkrVwpn1hYNBHAr0KfYM+nOtVWGpfONG+MGytUM6zNtFCknlpPEvyk6BZzrlJ1ZmtQOF6XJ3MLBaj0fKz4t4hel/m3Xr8Qv/w0cHAWsMvdDYdDKtF3MLZ3WdNFMEr5FwvVQCvcH3oYFCt4hXy7uPLj1cYKz2PnqBQ/3epRz87qxheIfcmsPS4R/xY9Z3ILSQB496TCvjnpSRnPn8pPYG1hZH2Ikq1lhJwd6l1ve56zOAhYitgYssk8x5it3YVQ14oVB8K1YdC9aFQfShUH1047npILaMLd5ZOSEPh8EMjZtPaQi8oVB8K1YdC9aFQfShUHwrVh0L1NRU+uT4ctuolhYXzFP8h5ZjJmrCF1wqxQoWv08T0Ptfs/iH9NZcoVA0KNSikvz1At0L6QUMUKgaFKJTfjP46Hc0KYxSiUHr/weeQ/tZq3Qo/UYhC2aEQhfJDIQrlh0L1C1P6+xFQqJj/tJD+jlmVC+l/0msb/m56Q+H/TtYLb2N26sYAAAAAAAAAAAAAAAAAAAAAAACAlv4A1GyQmLCVhwAAAAAASUVORK5CYII=" alt=""></button>
+                </div>
+            </div>   -->
+            <div class="showers" ng-class="{false:'showers_show'}[showers_show]">
+                <button ng-click="showers_show=true"><i class="fa-solid fa-arrow-left back"></i>
+                </button>
+    
+                <table class="loves_showers">
+                    <tr ng-repeat="shower in showersAvailableLoves | orderBy: 'label'">
+                      <td><img src="https://cdn-icons-png.flaticon.com/128/2425/2425854.png" alt="" id="shower_icon_indy">{{ shower.label}}</td>
+                      <td>{{ shower.status }}</td>
+                    </tr>
+                  </table>
+                  
+    
+    
+    
+                    <!-- <ol>
+                        <li ng-repeat="shower in showersAvailableLoves | orderBy: 'label'">
+                            {{ shower.label + ": " + shower.status }} 
+                            
+                        </li>
+                    </ol>
+                    <ol>
+                        ta
+                        <li ng-repeat="showerTA in showersAvailableTA | orderBy: 'label'" >
+                            {{ showerTA.label + ": " + showerTA.status }} 
+                        </li>
+                    </ol>
+                    <ol>
+                        petro
+                        <li ng-repeat="showerP in showersAvailablePetro | orderBy: 'label'" >
+                            {{ showerP.label + ": " + showerP.status }} 
+                        </li>
+                    </ol> -->
+                    
+            </div> 
+            
+            <div class="pumps_loves" ng-class="{false:'pumps_show'}[pumps_show]">
+                <div class="loves_fuel_container">
+                    <button ng-click="pumps_show=true"><i class="fa-solid fa-arrow-left back"></i>
+                    </button>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Love%E2%80%99s_Travel_Stops_%26_Country_Stores_Logo.svg/1280px-Love%E2%80%99s_Travel_Stops_%26_Country_Stores_Logo.svg.png" alt="" id="logo_fuel_img">
+                    <div class="price_container">
+                        <span id="diesel_info">Diesel {{info[0].fuel[0].diesel}}</span>
+                        <br>
+                        <span id="gas_info">Unleaded {{info[0].fuel[0].gas}}</span>
+                        
+                    </div>
+    
+                </div>
+                <!-- <h1>Pumps</h1>
+                <ol>
+                    <li ng-repeat="x in info[0].pumps">
+                        {{ x.id + " " + x.status[0] }}
+                    </li>
+                </ol>
+                <ol>
+                    <li ng-repeat="x in info[0].fuel">
+                        {{"Diesel: " + x.diesel}}
+                        {{"Gas: " + x.gas }}
+                    </li>
+                </ol> -->
+            </div>
+            
+            <div class="parking_container" ng-class="{false:'parking_show'}[parking_show]">
+                <button ng-click="parking_show=true"><i class="fa-solid fa-arrow-left back"></i>
+                </button>
+                    <my-test-directive ng-repeat="pair in paired" ng-class="{'legend_status': pair.p_status ==='occupied'}"></my-test-directive>
+                    <div class="legend">
+                        <div id="yellow_means">Vacant</div>
+                        <div id="red_means">Occupied/Reserved</div>
+                        <h3>Total Number of Spots: 29 </h3>
+                        <h3>Avialable Spots: {{vacant}} </h3>
+                    </div>
+                
+                    
+            </div>
+
+            <div class="map_container" ng-class="{false: 'map_show'}[map_show]">
+                <button ng-click="map_show=true"><i class="fa-solid fa-arrow-left back"></i>
+                </button>
+                <!-- <div id="mcdonalds_map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3142394.5151882735!2d-77.90199413749997!3d39.72292109999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c701c91cc664db%3A0x234c1a80b344bfa5!2sMcDonald&#39;s!5e0!3m2!1sen!2sus!4v1674075881011!5m2!1sen!2sus" width="300" height="150" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe></div> 
+
+                div#
+                
+                -->
+            </div>
+                
+        </div>
+    
+        
+        
+        <!-- <div class="parking">
+            <div class="parking_container">
+                <div class="parking_spot"></div>
+            </div>
+        </div> -->
+
+
+    </section>
+
+        
+    
+
+
+
+
+
+
+<!-- 
+
+
+   
+    
+    <section ng-app="myPoints">
+        <div class="container">
+            <h3 class="constText">My Points</h3>
+        </div>
+    </section>
+
+    34 72050886
+    -->
+
+
+
+
+
+
+
+
+    <script src="fun.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+</body>
+</html>
+
+
+
+
+<!-- Checklist
+
+- remove .container_loves when closing one of the app_option tabs
+- resize window for phones and different screens
+- stylize clock
+- stylize navbar
+- make backgrounds change depending on time of day using services/factory function
+- implement three more services somehow
+- create food container and contents
+- figure out how to individualize content based on the company that has been selected and each of it's indivisual info (i.e. diesel prices, showers, parking spots, etc.)
+- add icons for account info and returning to home screen
+- add trucker points system and points amount at top right or left
+- add dummy system for reserving parking
+- tiny truck that rides in then out of frame when hovering over navbar options
+- blur background of app_options buttons
+
+
+
+
+
+
+
+
+-->
